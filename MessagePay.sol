@@ -3,8 +3,13 @@
 pragma solidity >0.5.0 <=0.9.0;
 
 contract Messages {
+    address public centralBank;
     mapping(address => mapping(address => string[])) addressMap;
     mapping(address => int) balance;
+    
+    constructor() {
+        centralBank = msg.sender;
+    }
     
     function putMessage(address _to, string memory _message) public {
         bytes memory bytesString = bytes(_message);
@@ -35,7 +40,8 @@ contract Messages {
         return balance[msg.sender];
     }
     
-    function setBalance(int sum) public {
-        balance[msg.sender] = sum;
+    function setBalance(address customer, int sum) public {
+        if (msg.sender != centralBank) return;
+        balance[customer] = sum;
     }
 }
