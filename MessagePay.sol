@@ -2,7 +2,7 @@
 
 pragma solidity >0.5.0 <=0.9.0;
 
-contract Messages {
+contract MessagePay {
     address public centralBank;
     mapping(address => mapping(address => string[])) addressMap;
     mapping(address => int) balance;
