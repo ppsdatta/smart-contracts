@@ -40,6 +40,12 @@ contract Messages {
         return balance[msg.sender];
     }
     
+    function getCustomerBalance(address _customer) public view returns (int) {
+        require(msg.sender == centralBank);
+        
+        return balance[_customer];
+    }
+    
     function setBalance(address customer, int sum) public {
         if (msg.sender != centralBank) return;
         balance[customer] = sum;
